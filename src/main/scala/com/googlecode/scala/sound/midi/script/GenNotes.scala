@@ -1,4 +1,4 @@
-//class GenNotes {
+object GenNotes {
 
 //  val A\u266f:Int = 4
 
@@ -35,4 +35,4 @@ noteList.foreach(n =>
                      printNoteDef(n._1 + n._2._1, n._2._2)
                    }
 )
-//}
+}
