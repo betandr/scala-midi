@@ -1,5 +1,6 @@
 package sound
 
+import com.googlecode.scala.sound.midi._
 import javax.sound.midi.{Synthesizer, MidiUnavailableException, MidiSystem, Receiver}
 import com.googlecode.scala.sound.midi.Notes._
 import com.googlecode.scala.sound.midi.RichMidiDevice._
@@ -19,7 +20,7 @@ object Midi {
     // moderately loud (velocity = 93).
     val timeStamp: Long = -1
     //  val rcvr = MidiSystem.getReceiver()
-    rcvr.send(NoteOn(0, C4, 93), timeStamp)
+    rcvr ! (NoteOn(0, C4, 93), timeStamp)
   }
 
   def playScale(scale: List[Int]) {
@@ -28,17 +29,17 @@ object Midi {
     scale.foreach {
                     interval =>
                       note += interval
-                      rcvr.send(NoteOn(0, note, 93), timeStamp)
+                      rcvr ! (NoteOn(0, note, 93), timeStamp)
                       Thread.sleep(200)
-                      rcvr.send(NoteOff(0, note, 93), timeStamp)
+                      rcvr ! (NoteOff(0, note, 93), timeStamp)
                   }
   }
 
   def playScale {
     for (note <- C4 until C5) {
-      rcvr.send(NoteOn(0, note, 93), timeStamp)
+      rcvr ! (NoteOn(0, note, 93), timeStamp)
       timeStamp += 200000
-      rcvr.send(NoteOff(0, note, 93), timeStamp)
+      rcvr ! (NoteOff(0, note, 93), timeStamp)
     }
   }
 

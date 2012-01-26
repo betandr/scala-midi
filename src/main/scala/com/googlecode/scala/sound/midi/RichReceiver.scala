@@ -7,7 +7,3 @@ class RichReceiver(val rcvr: Receiver) {
     rcvr.send(midiMessage, l)
   }
 }
-
-object RichReceiver {
-  implicit def receiverToRichReceiver(r: Receiver) = new RichReceiver(r)
-}
