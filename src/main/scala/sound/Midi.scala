@@ -57,15 +57,6 @@ object Midi {
     Thread.sleep(400)
   }
 
-  // standard using block definition
-  def using[X <: {def close()}, A](resource: X)(f: X => A) = {
-    try {
-      f(resource)
-    } finally {
-      resource.close()
-    }
-  }
-
   def main(args: Array[String]) {
 
     val devInfo = MidiSystem.getMidiDeviceInfo
