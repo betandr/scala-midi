@@ -6,7 +6,7 @@
   <groupId>com.googlecode.scala-midi</groupId>
   <artifactId>scala-midi</artifactId>
   <packaging>jar</packaging>
-  <version>0.1-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT</version>
 
   <name>Scala MIDI</name>
   <inceptionYear>2012</inceptionYear>
