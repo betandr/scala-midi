@@ -19,10 +19,11 @@ import javax.sound.midi.MidiDevice
 
 class RichMidiDevice(val m: MidiDevice) {
 
-  def ->(other: MidiDevice) {
+  def ->(other: MidiDevice) = {
     require(other != null)
     val t = m.getTransmitter
     val r = other.getReceiver
     t.setReceiver(r)
+    other
   }
 }

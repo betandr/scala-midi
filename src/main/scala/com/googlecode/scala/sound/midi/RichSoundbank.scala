@@ -18,5 +18,8 @@ package com.googlecode.scala.sound.midi
 import javax.sound.midi.{Soundbank, Synthesizer}
 
 class RichSoundbank(sb: Soundbank) {
-   def ->(synth: Synthesizer) {synth.loadAllInstruments(sb)}
+   def ->(synth: Synthesizer) = {
+     synth.loadAllInstruments(sb)
+     synth
+   }
 }
