@@ -26,7 +26,3 @@ class RichMidiDevice(val m: MidiDevice) {
     t.setReceiver(r)
   }
 }
-
-object RichMidiDevice {
-  implicit def midiDeviceToRichMidiDevice(m: MidiDevice) = new RichMidiDevice(m)
-}

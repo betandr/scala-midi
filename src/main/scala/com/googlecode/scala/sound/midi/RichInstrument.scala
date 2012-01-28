@@ -15,16 +15,10 @@
  */
 package com.googlecode.scala.sound.midi
 
-import java.io.File
-import javax.sound.midi.{Synthesizer, MidiSystem, Sequencer}
+import javax.sound.midi.{Instrument, Synthesizer}
 
-class RichMidiFile(val file: File) {
-  def ->(seq: Sequencer) {
-    seq.setSequence(MidiSystem.getSequence(file))
-  }
-
+class RichInstrument(inst: Instrument) {
   def ->(synth: Synthesizer) {
-    synth.loadAllInstruments(MidiSystem.getSoundbank(file))
+    synth.loadInstrument(inst)
   }
-
 }
