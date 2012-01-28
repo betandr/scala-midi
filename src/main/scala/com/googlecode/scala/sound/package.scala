@@ -15,16 +15,33 @@
  */
 package com.googlecode.scala.sound
 
-import javax.sound.midi.{Receiver, Synthesizer}
 import java.io.File
-
+import javax.sound.midi._
 
 package object midi {
   implicit def synthAsReceiver(synth:Synthesizer) = synth.getReceiver
 
+  implicit def midiDeviceToRichMidiDevice(m: MidiDevice) = new RichMidiDevice(m)
+
   implicit def receiverToRichReceiver(r: Receiver) = new RichReceiver(r)
 
   implicit def fileToRichMidiFile(f: File) = new RichMidiFile(f)
+  
+  implicit def sbToRichSoundbank(sb: Soundbank) = new RichSoundbank(sb)
+
+  implicit def instToRichInstrument(inst: Instrument) = new RichInstrument(inst)
+
+  implicit def controllerEventListenerImplicit(func: (ShortMessage) => Unit) = {
+    new ControllerEventListener {
+      def controlChange(msg: ShortMessage) {func(msg)}
+    }
+  }
+
+  implicit def metaEventListenerImplicit(func: (MetaMessage) => Unit) = {
+    new MetaEventListener {
+      def meta(msg: MetaMessage) {func(msg)}
+    }
+  }
 
   // standard using block definition
   def using[X <: {def close()}, A](resource: X)(f: X => A) = {

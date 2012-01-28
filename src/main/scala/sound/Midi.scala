@@ -18,7 +18,6 @@ package sound
 import com.googlecode.scala.sound.midi._
 import javax.sound.midi.{Synthesizer, MidiUnavailableException, MidiSystem, Receiver}
 import com.googlecode.scala.sound.midi.Notes._
-import com.googlecode.scala.sound.midi.RichMidiDevice._
 import com.googlecode.scala.sound.midi.message.{NoteOff, NoteOn}
 
 object Midi {
