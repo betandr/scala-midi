@@ -18,7 +18,8 @@ package com.googlecode.scala.sound.midi
 import javax.sound.midi.{Instrument, Synthesizer}
 
 class RichInstrument(inst: Instrument) {
-  def ->(synth: Synthesizer) {
+  def ->(synth: Synthesizer) = {
     synth.loadInstrument(inst)
+    synth
   }
 }

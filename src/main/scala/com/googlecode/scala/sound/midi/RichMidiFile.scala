@@ -19,12 +19,14 @@ import java.io.File
 import javax.sound.midi.{Synthesizer, MidiSystem, Sequencer}
 
 class RichMidiFile(val file: File) {
-  def ->(seq: Sequencer) {
+  def ->(seq: Sequencer) = {
     seq.setSequence(MidiSystem.getSequence(file))
+    seq
   }
 
-  def ->(synth: Synthesizer) {
+  def ->(synth: Synthesizer) = {
     synth.loadAllInstruments(MidiSystem.getSoundbank(file))
+    synth
   }
 
 }
