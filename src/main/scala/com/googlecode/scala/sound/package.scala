@@ -17,6 +17,7 @@ package com.googlecode.scala.sound
 
 import java.io.File
 import javax.sound.midi._
+import javax.sound.sampled.{AudioInputStream, LineEvent, LineListener}
 
 package object midi {
   implicit def synthAsReceiver(synth:Synthesizer) = synth.getReceiver
@@ -42,6 +43,25 @@ package object midi {
       def meta(msg: MetaMessage) {func(msg)}
     }
   }
+
+  // standard using block definition
+  def using[X <: {def close()}, A](resource: X)(f: X => A) = {
+    try {
+      f(resource)
+    } finally {
+      resource.close()
+    }
+  }
+}
+
+package object sampled {
+  implicit def lineListenerImplicit(func: (LineEvent) => Unit) = {
+    new LineListener {
+      def update(msg: LineEvent) {func(msg)}
+    }
+  }
+  
+  implicit def audioInStreamToAudioFmt(s: AudioInputStream) = s.getFormat
 
   // standard using block definition
   def using[X <: {def close()}, A](resource: X)(f: X => A) = {
