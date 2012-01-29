@@ -62,6 +62,8 @@ package object sampled {
   }
   
   implicit def audioInStreamToAudioFmt(s: AudioInputStream) = s.getFormat
+  
+  implicit def audioInputStreamToRichAudioInputStream(s: AudioInputStream) = new RichAudioInputStream(s)
 
   // standard using block definition
   def using[X <: {def close()}, A](resource: X)(f: X => A) = {
