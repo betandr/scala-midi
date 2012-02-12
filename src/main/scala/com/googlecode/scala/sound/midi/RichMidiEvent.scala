@@ -13,19 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.scala.sound.midi.message
+package com.googlecode.scala.sound.midi
 
-object ShortMessage {
+import javax.sound.midi.Track
 
-  def apply(command: Int, channel: Int, data1: Int) = {
-    val msg = new javax.sound.midi.ShortMessage
-    msg.setMessage(command, channel, data1)
-    msg
-  }
-
-  def apply(command: Int, channel: Int, data1: Int, data2: Int) = {
-    val msg = new javax.sound.midi.ShortMessage
-    msg.setMessage(command, channel, data1, data2)
-    msg
-  }
+class RichMidiEvent(e: javax.sound.midi.MidiEvent) {
+   def ->(track: Track) {
+     track.add(e)
+   }
 }

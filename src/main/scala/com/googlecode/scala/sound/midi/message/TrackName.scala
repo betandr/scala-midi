@@ -15,17 +15,12 @@
  */
 package com.googlecode.scala.sound.midi.message
 
-object ShortMessage {
+import javax.sound.midi.MetaMessage
 
-  def apply(command: Int, channel: Int, data1: Int) = {
-    val msg = new javax.sound.midi.ShortMessage
-    msg.setMessage(command, channel, data1)
-    msg
-  }
-
-  def apply(command: Int, channel: Int, data1: Int, data2: Int) = {
-    val msg = new javax.sound.midi.ShortMessage
-    msg.setMessage(command, channel, data1, data2)
+object TrackName {
+  def apply(name: String) = {
+    val msg = new MetaMessage()
+    msg.setMessage(0x03, name.getBytes, name.length)
     msg
   }
 }
