@@ -15,17 +15,8 @@
  */
 package com.googlecode.scala.sound.midi.message
 
-object ShortMessage {
-
-  def apply(command: Int, channel: Int, data1: Int) = {
-    val msg = new javax.sound.midi.ShortMessage
-    msg.setMessage(command, channel, data1)
-    msg
-  }
-
-  def apply(command: Int, channel: Int, data1: Int, data2: Int) = {
-    val msg = new javax.sound.midi.ShortMessage
-    msg.setMessage(command, channel, data1, data2)
-    msg
+object ChannelPressure {
+  def apply(channel: Int, pressure: Int) = {
+    ShortMessage(javax.sound.midi.ShortMessage.CHANNEL_PRESSURE, channel, pressure)
   }
 }

@@ -13,19 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.scala.sound.midi.message
+package com.googlecode.scala.sound.sampled.examples
 
-object ShortMessage {
+import java.io.File
+import com.googlecode.scala.sound.sampled._
+import javax.sound.sampled.{LineEvent, AudioSystem}
 
-  def apply(command: Int, channel: Int, data1: Int) = {
-    val msg = new javax.sound.midi.ShortMessage
-    msg.setMessage(command, channel, data1)
-    msg
-  }
+object Player {
 
-  def apply(command: Int, channel: Int, data1: Int, data2: Int) = {
-    val msg = new javax.sound.midi.ShortMessage
-    msg.setMessage(command, channel, data1, data2)
-    msg
+  def main(args: Array[String]) {
+    val file = new File("src/main/resources/sample.au")
+    val stream = AudioSystem.getAudioInputStream(file)
+    using(SourceDataLine(stream)) {
+      line => {
+        line.addLineListener((e: LineEvent) => {println(e)})
+        stream >> line
+      }
+    }
   }
 }

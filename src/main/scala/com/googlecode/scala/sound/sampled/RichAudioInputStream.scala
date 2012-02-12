@@ -15,17 +15,17 @@
  */
 package com.googlecode.scala.sound.sampled
 
-import javax.sound.sampled.{AudioInputStream, SourceDataLine}
+import javax.sound.sampled.AudioInputStream
 
 
 class RichAudioInputStream(stream: AudioInputStream) {
-   def >>(line: SourceDataLine) {
+   def >>(line: javax.sound.sampled.SourceDataLine) {
      if (!line.isOpen) {
-       line.open()
+       line.open(stream.getFormat)
      }
      line.start()
      val numBytesToRead = line.getBufferSize
-     var myData = new Array[Byte](numBytesToRead)
+     val myData = new Array[Byte](numBytesToRead)
 
      var numBytesRead = stream.read(myData, 0, numBytesToRead)
      while (numBytesRead > 0) {

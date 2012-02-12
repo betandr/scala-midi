@@ -24,11 +24,15 @@ package object midi {
 
   implicit def midiDeviceToRichMidiDevice(m: MidiDevice) = new RichMidiDevice(m)
 
+  implicit def midiEventToRichMidiEvent(e: MidiEvent) = new RichMidiEvent(e)
+
   implicit def receiverToRichReceiver(r: Receiver) = new RichReceiver(r)
 
   implicit def fileToRichMidiFile(f: File) = new RichMidiFile(f)
   
   implicit def sbToRichSoundbank(sb: Soundbank) = new RichSoundbank(sb)
+
+  implicit def seqToRichSequence(seq: Sequence) = new RichSequence(seq)
 
   implicit def instToRichInstrument(inst: Instrument) = new RichInstrument(inst)
 
