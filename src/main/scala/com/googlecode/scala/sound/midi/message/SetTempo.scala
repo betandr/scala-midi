@@ -18,12 +18,21 @@ package com.googlecode.scala.sound.midi.message
 import javax.sound.midi.MetaMessage
 import java.nio.ByteBuffer
 
+/**
+ * Factory object for SetTempo meta-messages
+ */
 object SetTempo {
+
+  /**
+   *
+   * @param tempoInBPM
+   * @return
+   */
   def apply(tempoInBPM: Int) = {
     require(tempoInBPM > 0)
     val microSecondsPerBeat = 60000000 / tempoInBPM
-    val bytes = ByteBuffer.allocate(4).putInt(microSecondsPerBeat).array().dropWhile(x => x == 0)
-    val msg = new MetaMessage()
+    val bytes = ByteBuffer.allocate(4).putInt(microSecondsPerBeat).array().dropWhile(_ == 0)
+    val msg = new MetaMessage
     msg.setMessage(0x51, bytes, bytes.length)
     msg
   }

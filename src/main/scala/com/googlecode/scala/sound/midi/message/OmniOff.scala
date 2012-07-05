@@ -15,6 +15,9 @@
  */
 package com.googlecode.scala.sound.midi.message
 
+/**
+ * Factory object for OmniOff messages
+ */
 object OmniOff {
   def apply() = {
     ShortMessage(0xB0, 0x7C, 0x00)

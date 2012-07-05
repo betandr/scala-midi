@@ -17,9 +17,12 @@ package com.googlecode.scala.sound.midi.message
 
 import javax.sound.midi.MetaMessage
 
+/**
+ * Factory object for EndOfTrack meta-message
+ */
 object EndOfTrack {
   def apply() = {
-    val msg = new MetaMessage()
+    val msg = new MetaMessage
     msg.setMessage(0x2F, Array(), 0)
     msg
   }

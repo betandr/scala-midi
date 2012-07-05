@@ -15,6 +15,9 @@
  */
 package com.googlecode.scala.sound.midi.message
 
+/**
+ * Factory object for PolyOn messages
+ */
 object PolyOn {
   def apply() = {
     ShortMessage(0xB0, 0x7F, 0x00)

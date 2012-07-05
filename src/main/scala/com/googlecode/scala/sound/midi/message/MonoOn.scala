@@ -15,6 +15,9 @@
  */
 package com.googlecode.scala.sound.midi.message
 
+/**
+ * Factory object for MonoOn messages
+ */
 object MonoOn {
   def apply() = {
     ShortMessage(0xB0, 0x7E, 0x00)
