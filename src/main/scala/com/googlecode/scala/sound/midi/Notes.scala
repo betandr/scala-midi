@@ -15,6 +15,11 @@
  */
 package com.googlecode.scala.sound.midi
 
+/**
+ * Provides symbolic names for midi note numbers
+ * As0 == A sharp midi octave 0
+ * Bb0 == B flat midi octave 0
+ */
 object Notes {
   val A0 = 21
   val As0 = 22
