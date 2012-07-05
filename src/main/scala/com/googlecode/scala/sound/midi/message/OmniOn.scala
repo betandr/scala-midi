@@ -15,6 +15,9 @@
  */
 package com.googlecode.scala.sound.midi.message
 
+/**
+ * Factory object for OmniOn messages
+ */
 object OmniOn {
   def apply() = {
     ShortMessage(0xB0, 0x7D, 0x00)

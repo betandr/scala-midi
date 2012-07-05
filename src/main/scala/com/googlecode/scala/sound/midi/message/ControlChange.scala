@@ -15,6 +15,9 @@
  */
 package com.googlecode.scala.sound.midi.message
 
+/**
+ * Factory object for ControlChange messages
+ */
 object ControlChange {
   def apply(channel: Int, controller: Int,  value: Int) = {
     ShortMessage(javax.sound.midi.ShortMessage.CONTROL_CHANGE, channel, controller, value)

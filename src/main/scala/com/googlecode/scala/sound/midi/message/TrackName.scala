@@ -17,9 +17,18 @@ package com.googlecode.scala.sound.midi.message
 
 import javax.sound.midi.MetaMessage
 
+/**
+ * Factory object for TrackName meta-messages
+ */
 object TrackName {
+
+  /**
+   *
+   * @param name
+   * @return
+   */
   def apply(name: String) = {
-    val msg = new MetaMessage()
+    val msg = new MetaMessage
     msg.setMessage(0x03, name.getBytes, name.length)
     msg
   }

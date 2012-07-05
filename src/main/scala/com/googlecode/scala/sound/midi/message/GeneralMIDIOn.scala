@@ -17,11 +17,14 @@ package com.googlecode.scala.sound.midi.message
 
 import javax.sound.midi.SysexMessage
 
+/**
+ * Factory object for GeneralMIDIOn sysex messages
+ */
 object GeneralMIDIOn {
-     def apply() = {
-       val b = List[Byte](0xF0.toByte, 0x7E, 0x7F, 0x09, 0x01, 0xF7.toByte).toArray
-       val msg = new SysexMessage()
-       msg.setMessage(b, b.length)
-       msg
-     }
+  def apply() = {
+    val b = List[Byte](0xF0.toByte, 0x7E, 0x7F, 0x09, 0x01, 0xF7.toByte).toArray
+    val msg = new SysexMessage()
+    msg.setMessage(b, b.length)
+    msg
+  }
 }

@@ -15,8 +15,18 @@
  */
 package com.googlecode.scala.sound.midi.message
 
+/**
+ * Factory object for ChannelVolume messages
+ */
 object ChannelVolume {
-   def apply(channel: Int, vol: Int) = {
-     ShortMessage(0xB0, channel, 0x07, vol)
-   }
+
+  /**
+   *
+   * @param channel
+   * @param vol
+   * @return
+   */
+  def apply(channel: Int, vol: Int) = {
+    ShortMessage(0xB0, channel, 0x07, vol)
+  }
 }

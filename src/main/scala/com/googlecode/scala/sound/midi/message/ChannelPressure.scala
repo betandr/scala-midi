@@ -15,7 +15,16 @@
  */
 package com.googlecode.scala.sound.midi.message
 
+/**
+ * Factory object for ChannelPressure messages
+ */
 object ChannelPressure {
+  /**
+   *
+   * @param channel MIDI channel for this message
+   * @param pressure Pressure value
+   * @return
+   */
   def apply(channel: Int, pressure: Int) = {
     ShortMessage(javax.sound.midi.ShortMessage.CHANNEL_PRESSURE, channel, pressure)
   }
