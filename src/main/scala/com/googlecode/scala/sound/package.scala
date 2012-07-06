@@ -18,6 +18,7 @@ package com.googlecode.scala.sound
 import java.io.File
 import javax.sound.midi._
 import javax.sound.sampled.{AudioInputStream, LineEvent, LineListener}
+import java.net.URL
 
 /**
  *
@@ -79,6 +80,18 @@ package object midi {
     }
   }
 
+  class RichURL(url: URL) {
+    def ->(seq: Sequencer) = {
+      seq.setSequence(MidiSystem.getSequence(url))
+      seq
+    }
+
+    def ->(synth: Synthesizer) = {
+      synth.loadAllInstruments(MidiSystem.getSoundbank(url))
+      synth
+    }
+  }
+
   implicit def synthAsReceiver(synth:Synthesizer) = synth.getReceiver
 
   implicit def midiDeviceToRichMidiDevice(m: MidiDevice) = new RichMidiDevice(m)
@@ -94,6 +107,8 @@ package object midi {
   implicit def seqToRichSequence(seq: Sequence) = new RichSequence(seq)
 
   implicit def instToRichInstrument(inst: Instrument) = new RichInstrument(inst)
+
+  implicit def urlToRichURL(url: URL) = new RichURL(url)
 
   implicit def controllerEventListenerImplicit(func: (ShortMessage) => Unit) = {
     new ControllerEventListener {
