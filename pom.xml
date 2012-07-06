@@ -3,12 +3,27 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <scala.version>2.9.2</scala.version>
+  </properties>
+
   <groupId>com.googlecode.scala-midi</groupId>
-  <artifactId>scala-midi</artifactId>
+  <artifactId>scala-midi_${scala.version}</artifactId>
   <packaging>jar</packaging>
   <version>0.2-SNAPSHOT</version>
 
   <name>Scala MIDI</name>
+  <description></description>
+  <url>http://code.google.com/p/scala-midi/</url>
   <inceptionYear>2012</inceptionYear>
   <licenses>
     <license>
@@ -18,14 +33,10 @@
     </license>
   </licenses>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <scala.version>2.9.1</scala.version>
-  </properties>
-
   <scm>
-    <connection>scm:hg:https://code.google.com/p/scala-midi/</connection>
+    <connection>scm:hg:http://code.google.com/p/scala-midi</connection>
+    <developerConnection>scm:hg:https://code.google.com/p/scala-midi</developerConnection>
+    <url>http://code.google.com/p/scala-midi/source/checkout</url>
   </scm>
 
   <developers>
@@ -40,10 +51,11 @@
       <plugin>
         <groupId>net.alchim31.maven</groupId>
         <artifactId>scala-maven-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>3.0.2</version>
         <configuration>
           <args>
             <arg>-optimise</arg>
+            <arg>-deprecation</arg>
           </args>
         </configuration>
         <executions>
@@ -83,8 +95,8 @@
 
     <dependency>
       <groupId>org.scalatest</groupId>
-      <artifactId>scalatest_2.9.1</artifactId>
-      <version>1.6.1</version>
+      <artifactId>scalatest_${scala.version}</artifactId>
+      <version>1.7.2</version>
       <scope>test</scope>
     </dependency>
 
