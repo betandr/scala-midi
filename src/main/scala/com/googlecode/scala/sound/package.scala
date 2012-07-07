@@ -26,6 +26,11 @@ import java.net.URL
 package object midi {
 
   class RichInstrument(inst: Instrument) {
+    /**
+     * Loads this instrument into the specified synth
+     * @param synth
+     * @return
+     */
     def ->(synth: Synthesizer) = {
       synth.loadInstrument(inst)
       synth
@@ -33,6 +38,11 @@ package object midi {
   }
 
   class RichMidiDevice(val m: MidiDevice) {
+    /**
+     * Connects this midi devices's transmitter to the other's receiver
+     * @param other
+     * @return
+     */
     def ->(other: MidiDevice) = {
       require(other != null)
       val t = m.getTransmitter
@@ -43,17 +53,33 @@ package object midi {
   }
 
   class RichMidiEvent(e: javax.sound.midi.MidiEvent) {
-    def ->(track: Track) {
+    /**
+     * Adds this midi event to the specified track
+     * @param track
+     * @return
+     */
+    def ->(track: Track) = {
       track.add(e)
+      track
     }
   }
 
   class RichMidiFile(val file: File) {
+    /**
+     * Loads the sequencer's sequence from this file
+     * @param seq
+     * @return
+     */
     def ->(seq: Sequencer) = {
       seq.setSequence(MidiSystem.getSequence(file))
       seq
     }
 
+    /**
+     * Loads the synth's instruments from this soundbank file
+     * @param synth
+     * @return
+     */
     def ->(synth: Synthesizer) = {
       synth.loadAllInstruments(MidiSystem.getSoundbank(file))
       synth
@@ -61,12 +87,23 @@ package object midi {
   }
 
   class RichReceiver(val rcvr: Receiver) {
-    def !(midiMessage: javax.sound.midi.MidiMessage, l: Long) {
+    /**
+     * Sends a midiMessage to this receiver
+     * @param midiMessage
+     * @param l
+     * @return
+     */
+    def !(midiMessage: javax.sound.midi.MidiMessage, l: Long) = {
       rcvr.send(midiMessage, l)
+      rcvr
     }
   }
 
   class RichSequence(seq: javax.sound.midi.Sequence) {
+    /**
+     * Writes this sequence to the specified file
+     * @param file
+     */
     def >> (file: File) {
       val midiType = MidiSystem.getMidiFileTypes(seq).min
       MidiSystem.write(seq, midiType, file)
@@ -74,6 +111,12 @@ package object midi {
   }
 
   class RichSoundbank(sb: Soundbank) {
+
+    /**
+     * Loads the synth's instruments from this soundbank
+     * @param synth
+     * @return
+     */
     def ->(synth: Synthesizer) = {
       synth.loadAllInstruments(sb)
       synth
@@ -81,11 +124,22 @@ package object midi {
   }
 
   class RichURL(url: URL) {
+
+    /**
+     * Loads the sequencer's sequence from this URL
+     * @param seq
+     * @return
+     */
     def ->(seq: Sequencer) = {
       seq.setSequence(MidiSystem.getSequence(url))
       seq
     }
 
+    /**
+     * Loads the synth's instruments from the soundbank specified by this URL
+     * @param synth
+     * @return
+     */
     def ->(synth: Synthesizer) = {
       synth.loadAllInstruments(MidiSystem.getSoundbank(url))
       synth
