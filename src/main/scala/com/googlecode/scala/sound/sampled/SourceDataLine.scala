@@ -17,15 +17,14 @@ package com.googlecode.scala.sound.sampled
 
 import java.net.URL
 import java.io.File
-import javax.sound.sampled
-import sampled.{AudioSystem, SourceDataLine, AudioFormat}
+import javax.sound.sampled.{AudioSystem, AudioFormat}
 
 /**
  * Factory object for SourceDataLine
  */
 object SourceDataLine {
 
-  def apply(format: AudioFormat): SourceDataLine = {
+  def apply(format: AudioFormat): javax.sound.sampled.SourceDataLine = {
     AudioSystem.getSourceDataLine(format)
   }
 
@@ -34,7 +33,7 @@ object SourceDataLine {
    * @param file
    * @return
    */
-  def apply(file: File): SourceDataLine = {
+  def apply(file: File): javax.sound.sampled.SourceDataLine = {
     apply(AudioSystem.getAudioInputStream(file))
   }
 
@@ -43,7 +42,7 @@ object SourceDataLine {
    * @param url
    * @return
    */
-  def apply(url: URL): SourceDataLine = {
+  def apply(url: URL): javax.sound.sampled.SourceDataLine = {
     apply(AudioSystem.getAudioInputStream(url))
   }
 }
