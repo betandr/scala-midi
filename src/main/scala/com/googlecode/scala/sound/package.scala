@@ -97,6 +97,16 @@ package object midi {
       rcvr.send(midiMessage, l)
       rcvr
     }
+
+    /**
+     * Sends a midiEvent to this receiver
+     * @param midiEvent
+     * @return
+     */
+    def !(midiEvent: javax.sound.midi.MidiEvent) = {
+      rcvr.send(midiEvent.getMessage, midiEvent.getTick)
+      rcvr
+    }
   }
 
   class RichSequence(seq: javax.sound.midi.Sequence) {
