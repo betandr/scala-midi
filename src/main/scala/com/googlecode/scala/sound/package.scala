@@ -19,6 +19,7 @@ import java.io.File
 import javax.sound.midi._
 import javax.sound.sampled.{AudioInputStream, LineEvent, LineListener}
 import java.net.URL
+import scala.language.{implicitConversions, reflectiveCalls}
 
 /**
  *
