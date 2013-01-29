@@ -11,7 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <scala.version>2.9.2</scala.version>
+    <scala.version>2.10.0</scala.version>
   </properties>
 
   <groupId>com.googlecode.scala-midi</groupId>
@@ -89,7 +89,7 @@
     <dependency>
       <groupId>org.scalatest</groupId>
       <artifactId>scalatest_${scala.version}</artifactId>
-      <version>1.7.2</version>
+      <version>1.9.1</version>
       <scope>test</scope>
     </dependency>
 
