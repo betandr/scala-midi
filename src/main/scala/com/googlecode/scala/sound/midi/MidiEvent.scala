@@ -31,4 +31,8 @@ object MidiEvent {
   def apply(msg: MidiMessage, tick: Long) = {
     new javax.sound.midi.MidiEvent(msg, tick)
   }
+
+  def unapply(event: javax.sound.midi.MidiEvent) = {
+    Some(event.getMessage, event.getTick)
+  }
 }

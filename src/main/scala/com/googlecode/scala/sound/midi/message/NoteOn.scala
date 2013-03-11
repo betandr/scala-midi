@@ -22,4 +22,10 @@ object NoteOn {
   def apply(channel: Int, key: Int, velocity: Int) = {
     ShortMessage(javax.sound.midi.ShortMessage.NOTE_ON, channel, key, velocity)
   }
+
+  def unapply(msg: javax.sound.midi.ShortMessage) = {
+    if (msg.getCommand == javax.sound.midi.ShortMessage.NOTE_ON) {
+      Some(msg.getChannel, msg.getData1, msg.getData2)
+    } else None
+  }
 }
